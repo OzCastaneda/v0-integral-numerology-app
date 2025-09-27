@@ -6,6 +6,7 @@ import {
   ASTROLOGY_CORRESPONDENCES,
 } from "./numerology-constants"
 import type { NumerologyResult } from "./numerology-calculations"
+import { getFormattedBirthDate } from "./numerology-calculations"
 
 interface UserData {
   fullName: string
@@ -192,12 +193,7 @@ export async function generateNumerologyPDF(results: NumerologyResult, userData:
   addTitle(userData.fullName, 18, "#6B46C1")
   addSpace(5)
 
-  const birthDateFormatted = new Date(userData.birthDate).toLocaleDateString("es-ES", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  })
+  const birthDateFormatted = getFormattedBirthDate(userData.birthDate)
   addTitle(`Nacido el ${birthDateFormatted}`, 12, "#9CA3AF")
   addSpace(20)
 

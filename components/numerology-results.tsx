@@ -14,6 +14,7 @@ import {
   ASTROLOGY_CORRESPONDENCES,
 } from "@/lib/numerology-constants"
 import type { NumerologyResult } from "@/lib/numerology-calculations"
+import { getFormattedBirthDate } from "@/lib/numerology-calculations"
 import { Star, Moon, Sun, Sparkles, Eye, Crown, Heart, Download, Loader2 } from "lucide-react"
 
 interface NumerologyResultsProps {
@@ -216,15 +217,7 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
           </h1>
           <div className="space-y-2">
             <p className="text-xl text-muted-foreground">{userData.fullName}</p>
-            <p className="text-lg text-muted-foreground">
-              Nacido el{" "}
-              {new Date(userData.birthDate).toLocaleDateString("es-ES", {
-                weekday: "long",
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </p>
+            <p className="text-lg text-muted-foreground">Nacido el {getFormattedBirthDate(userData.birthDate)}</p>
           </div>
         </div>
 

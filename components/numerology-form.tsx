@@ -32,9 +32,10 @@ export function NumerologyForm({ onSubmit, isLoading = false }: NumerologyFormPr
     if (!birthDate) {
       newErrors.birthDate = "La fecha de nacimiento es requerida"
     } else {
-      const date = new Date(birthDate)
+      const [year, month, day] = birthDate.split("-").map(Number)
+      const inputDate = new Date(year, month - 1, day)
       const today = new Date()
-      if (date > today) {
+      if (inputDate > today) {
         newErrors.birthDate = "La fecha no puede ser futura"
       }
     }
