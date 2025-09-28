@@ -4,80 +4,80 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Mystical theme with deep cosmic colors */
-  --background: oklch(0.08 0.02 270); /* Deep cosmic blue-black */
-  --foreground: oklch(0.95 0.01 60); /* Warm starlight white */
-  --card: oklch(0.12 0.03 270); /* Slightly lighter cosmic */
-  --card-foreground: oklch(0.92 0.01 60);
-  --popover: oklch(0.12 0.03 270);
-  --popover-foreground: oklch(0.92 0.01 60);
-  --primary: oklch(0.65 0.15 280); /* Mystical purple */
-  --primary-foreground: oklch(0.98 0.01 60);
-  --secondary: oklch(0.18 0.04 270); /* Dark cosmic accent */
+  /* Updated to golden and blue mystical color scheme */
+  --background: oklch(0.05 0.02 240); /* Deep mystical blue-black */
+  --foreground: oklch(0.98 0.01 45); /* Golden starlight white */
+  --card: oklch(0.08 0.03 240); /* Slightly lighter mystical blue */
+  --card-foreground: oklch(0.95 0.01 45);
+  --popover: oklch(0.08 0.03 240);
+  --popover-foreground: oklch(0.95 0.01 45);
+  --primary: oklch(0.45 0.15 240); /* Deep mystical blue */
+  --primary-foreground: oklch(0.98 0.01 45);
+  --secondary: oklch(0.15 0.04 240); /* Dark blue accent */
   --secondary-foreground: oklch(0.88 0.02 45);
-  --muted: oklch(0.15 0.03 270);
+  --muted: oklch(0.12 0.03 240);
   --muted-foreground: oklch(0.65 0.02 45);
-  --accent: oklch(0.55 0.12 45); /* Golden mystical accent */
-  --accent-foreground: oklch(0.98 0.01 60);
+  --accent: oklch(0.65 0.15 45); /* Golden mystical accent */
+  --accent-foreground: oklch(0.05 0.02 240);
   --destructive: oklch(0.55 0.18 15); /* Warm red */
-  --destructive-foreground: oklch(0.98 0.01 60);
-  --border: oklch(0.22 0.04 270);
-  --input: oklch(0.18 0.04 270);
-  --ring: oklch(0.65 0.15 280);
-  --chart-1: oklch(0.65 0.15 280);
-  --chart-2: oklch(0.55 0.12 45);
-  --chart-3: oklch(0.45 0.1 200);
-  --chart-4: oklch(0.6 0.14 320);
+  --destructive-foreground: oklch(0.98 0.01 45);
+  --border: oklch(0.18 0.04 240);
+  --input: oklch(0.15 0.04 240);
+  --ring: oklch(0.65 0.15 45);
+  --chart-1: oklch(0.45 0.15 240);
+  --chart-2: oklch(0.65 0.15 45);
+  --chart-3: oklch(0.55 0.12 200);
+  --chart-4: oklch(0.6 0.14 280);
   --chart-5: oklch(0.5 0.11 180);
   --radius: 0.75rem;
-  --sidebar: oklch(0.1 0.02 270);
-  --sidebar-foreground: oklch(0.92 0.01 60);
-  --sidebar-primary: oklch(0.65 0.15 280);
-  --sidebar-primary-foreground: oklch(0.98 0.01 60);
-  --sidebar-accent: oklch(0.18 0.04 270);
+  --sidebar: oklch(0.08 0.02 240);
+  --sidebar-foreground: oklch(0.95 0.01 45);
+  --sidebar-primary: oklch(0.45 0.15 240);
+  --sidebar-primary-foreground: oklch(0.98 0.01 45);
+  --sidebar-accent: oklch(0.15 0.04 240);
   --sidebar-accent-foreground: oklch(0.88 0.02 45);
-  --sidebar-border: oklch(0.22 0.04 270);
-  --sidebar-ring: oklch(0.65 0.15 280);
+  --sidebar-border: oklch(0.18 0.04 240);
+  --sidebar-ring: oklch(0.65 0.15 45);
 }
 
 .dark {
-  --background: oklch(0.05 0.02 270);
-  --foreground: oklch(0.98 0.01 60);
-  --card: oklch(0.08 0.02 270);
-  --card-foreground: oklch(0.95 0.01 60);
-  --popover: oklch(0.08 0.02 270);
-  --popover-foreground: oklch(0.95 0.01 60);
-  --primary: oklch(0.7 0.18 280);
-  --primary-foreground: oklch(0.98 0.01 60);
-  --secondary: oklch(0.15 0.03 270);
+  --background: oklch(0.03 0.02 240);
+  --foreground: oklch(0.98 0.01 45);
+  --card: oklch(0.06 0.02 240);
+  --card-foreground: oklch(0.95 0.01 45);
+  --popover: oklch(0.06 0.02 240);
+  --popover-foreground: oklch(0.95 0.01 45);
+  --primary: oklch(0.5 0.18 240);
+  --primary-foreground: oklch(0.98 0.01 45);
+  --secondary: oklch(0.12 0.03 240);
   --secondary-foreground: oklch(0.9 0.02 45);
-  --muted: oklch(0.12 0.03 270);
+  --muted: oklch(0.1 0.03 240);
   --muted-foreground: oklch(0.7 0.02 45);
-  --accent: oklch(0.6 0.15 45);
-  --accent-foreground: oklch(0.98 0.01 60);
+  --accent: oklch(0.7 0.18 45);
+  --accent-foreground: oklch(0.03 0.02 240);
   --destructive: oklch(0.6 0.2 15);
-  --destructive-foreground: oklch(0.98 0.01 60);
-  --border: oklch(0.18 0.04 270);
-  --input: oklch(0.15 0.03 270);
-  --ring: oklch(0.7 0.18 280);
-  --chart-1: oklch(0.7 0.18 280);
-  --chart-2: oklch(0.6 0.15 45);
-  --chart-3: oklch(0.5 0.12 200);
-  --chart-4: oklch(0.65 0.16 320);
+  --destructive-foreground: oklch(0.98 0.01 45);
+  --border: oklch(0.15 0.04 240);
+  --input: oklch(0.12 0.03 240);
+  --ring: oklch(0.7 0.18 45);
+  --chart-1: oklch(0.5 0.18 240);
+  --chart-2: oklch(0.7 0.18 45);
+  --chart-3: oklch(0.6 0.15 200);
+  --chart-4: oklch(0.65 0.16 280);
   --chart-5: oklch(0.55 0.13 180);
-  --sidebar: oklch(0.08 0.02 270);
-  --sidebar-foreground: oklch(0.95 0.01 60);
-  --sidebar-primary: oklch(0.7 0.18 280);
-  --sidebar-primary-foreground: oklch(0.98 0.01 60);
-  --sidebar-accent: oklch(0.15 0.03 270);
+  --sidebar: oklch(0.06 0.02 240);
+  --sidebar-foreground: oklch(0.95 0.01 45);
+  --sidebar-primary: oklch(0.5 0.18 240);
+  --sidebar-primary-foreground: oklch(0.98 0.01 45);
+  --sidebar-accent: oklch(0.12 0.03 240);
   --sidebar-accent-foreground: oklch(0.9 0.02 45);
-  --sidebar-border: oklch(0.18 0.04 270);
-  --sidebar-ring: oklch(0.7 0.18 280);
+  --sidebar-border: oklch(0.15 0.04 240);
+  --sidebar-ring: oklch(0.7 0.18 45);
 }
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -124,7 +124,7 @@
     @apply bg-background text-foreground;
   }
 
-  /* Adding mystical background pattern */
+  /* Enhanced mystical background with golden and blue sacred geometry */
   body::before {
     content: "";
     position: fixed;
@@ -132,10 +132,55 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.05) 0%, transparent 50%);
+    background: radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(65, 105, 225, 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 60% 70%, rgba(30, 144, 255, 0.08) 0%, transparent 50%);
     pointer-events: none;
     z-index: -1;
   }
+
+  /* Added sacred geometry patterns */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFD700' fill-opacity='0.02'%3E%3Cpath d='M30 30l15-15v30l-15-15zm-15 0l15 15v-30l-15 15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+/* Added mystical animations */
+@keyframes sacred-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes golden-glow {
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.4);
+  }
+}
+
+.sacred-pulse {
+  animation: sacred-pulse 3s ease-in-out infinite;
+}
+
+.golden-glow {
+  animation: golden-glow 2s ease-in-out infinite;
 }
