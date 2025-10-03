@@ -27,7 +27,7 @@ export const LETTER_VALUES = {
   Z: 8,
 }
 
-export const MASTER_NUMBERS = [11, 22, 33]
+export const MASTER_NUMBERS = [11, 22, 33, 44]
 
 export const NUMBER_MEANINGS = {
   1: {
@@ -114,6 +114,14 @@ export const NUMBER_MEANINGS = {
     color: "#FDCB6E",
     element: "Agua",
   },
+  44: {
+    title: "El Maestro Manifestador",
+    description:
+      "Manifestación material elevada, construcción de legados duraderos, poder terrenal con propósito espiritual",
+    keywords: ["Manifestación", "Legado", "Poder", "Construcción"],
+    color: "#C0C0C0",
+    element: "Tierra",
+  },
 }
 
 export const TAROT_CORRESPONDENCES = {
@@ -129,6 +137,7 @@ export const TAROT_CORRESPONDENCES = {
   11: { card: "La Fuerza", arcana: "Arcano Mayor XI" },
   22: { card: "El Loco", arcana: "Arcano Mayor 0/22" },
   33: { card: "El Mundo", arcana: "Arcano Mayor XXI" },
+  44: { card: "El Juez", arcana: "Arcano Mayor X" },
 }
 
 export const KABBALAH_CORRESPONDENCES = {
@@ -144,6 +153,7 @@ export const KABBALAH_CORRESPONDENCES = {
   11: { sephira: "Daath", meaning: "Conocimiento", path: "Conocimiento Oculto" },
   22: { sephira: "Ain Soph", meaning: "Sin Límite", path: "Infinito" },
   33: { sephira: "Ain Soph Aur", meaning: "Luz Sin Límite", path: "Luz Infinita" },
+  44: { sephira: "Keter", meaning: "Corona Suprema", path: "Unidad Divina Suprema" },
 }
 
 export const ASTROLOGY_CORRESPONDENCES = {
@@ -159,4 +169,5 @@ export const ASTROLOGY_CORRESPONDENCES = {
   11: { planet: "Urano", sign: "Acuario", quality: "Aire Fijo Elevado" },
   22: { planet: "Plutón", sign: "Escorpio", quality: "Agua Fijo Transformador" },
   33: { planet: "Neptuno", sign: "Piscis", quality: "Agua Mutable Trascendente" },
+  44: { planet: "Sol", sign: "Leo", quality: "Fuego Fijo Supremo" },
 }

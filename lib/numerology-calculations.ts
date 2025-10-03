@@ -1,12 +1,13 @@
 import { LETTER_VALUES, MASTER_NUMBERS } from "./numerology-constants"
 
 export interface NumerologyResult {
-  soulPath: number
-  destiny: number
+  destiny: number // Número de Destino - from birth date
+  soul: number // Número del Alma - from vowels
+  personality: number // Número de Personalidad - from consonants
+  expression: number // Número de Expresión - from all letters
   luck: number
   karma: number
   personalYear: number
-  expression: number
 }
 
 // Utility function to parse date correctly without timezone issues
@@ -27,15 +28,15 @@ export function reduceNumber(num: number): number {
   return num
 }
 
-// Calculate Soul Path Number (from birth date)
-export function calculateSoulPath(birthDate: string): number {
+// Calculate Destiny Number (from birth date)
+export function calculateDestiny(birthDate: string): number {
   const { day, month, year } = parseDateSafely(birthDate)
   const total = day + month + year
   return reduceNumber(total)
 }
 
-// Calculate Destiny Number (from full name)
-export function calculateDestiny(fullName: string): number {
+// Calculate Expression Number (from full name)
+export function calculateExpression(fullName: string): number {
   const cleanName = fullName.toUpperCase().replace(/[^A-Z]/g, "")
   const total = cleanName.split("").reduce((sum, letter) => {
     return sum + (LETTER_VALUES[letter as keyof typeof LETTER_VALUES] || 0)
@@ -44,8 +45,8 @@ export function calculateDestiny(fullName: string): number {
   return reduceNumber(total)
 }
 
-// Calculate Expression Number (vowels from name)
-export function calculateExpression(fullName: string): number {
+// Calculate Soul Number (vowels from name)
+export function calculateSoul(fullName: string): number {
   const vowels = "AEIOU"
   const cleanName = fullName.toUpperCase().replace(/[^A-Z]/g, "")
   const total = cleanName.split("").reduce((sum, letter) => {
@@ -58,9 +59,23 @@ export function calculateExpression(fullName: string): number {
   return reduceNumber(total)
 }
 
-// Calculate Luck Number (combination of soul path and destiny)
-export function calculateLuck(soulPath: number, destiny: number): number {
-  return reduceNumber(soulPath + destiny)
+// Calculate Personality Number (consonants from name)
+export function calculatePersonality(fullName: string): number {
+  const vowels = "AEIOU"
+  const cleanName = fullName.toUpperCase().replace(/[^A-Z]/g, "")
+  const total = cleanName.split("").reduce((sum, letter) => {
+    if (!vowels.includes(letter)) {
+      return sum + (LETTER_VALUES[letter as keyof typeof LETTER_VALUES] || 0)
+    }
+    return sum
+  }, 0)
+
+  return reduceNumber(total)
+}
+
+// Calculate Luck Number (combination of destiny and expression)
+export function calculateLuck(destiny: number, expression: number): number {
+  return reduceNumber(destiny + expression)
 }
 
 // Calculate Karma Number (consonants from name)
@@ -88,20 +103,22 @@ export function calculatePersonalYear(birthDate: string): number {
 
 // Main calculation function
 export function calculateNumerology(fullName: string, birthDate: string): NumerologyResult {
-  const soulPath = calculateSoulPath(birthDate)
-  const destiny = calculateDestiny(fullName)
+  const destiny = calculateDestiny(birthDate)
   const expression = calculateExpression(fullName)
+  const soul = calculateSoul(fullName)
+  const personality = calculatePersonality(fullName)
+  const luck = calculateLuck(destiny, expression)
   const karma = calculateKarma(fullName)
-  const luck = calculateLuck(soulPath, destiny)
   const personalYear = calculatePersonalYear(birthDate)
 
   return {
-    soulPath,
     destiny,
+    soul,
+    personality,
+    expression,
     luck,
     karma,
     personalYear,
-    expression,
   }
 }
 

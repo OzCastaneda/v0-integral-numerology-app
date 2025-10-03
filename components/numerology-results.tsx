@@ -288,38 +288,37 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
             <TabsTrigger value="astrology">Astrología</TabsTrigger>
           </TabsList>
 
-          {/* Overview Tab */}
           <TabsContent value="overview" className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <NumberCard
-                title="Camino del Alma"
-                number={results.soulPath}
-                description="Tu propósito de vida fundamental"
+                title="Número de Destino"
+                number={results.destiny}
+                description="Tu misión de vida y propósito general"
                 type="Esencial"
               />
               <NumberCard
-                title="Número de Destino"
-                number={results.destiny}
-                description="Lo que estás destinado a lograr"
-                type="Destino"
+                title="Número del Alma"
+                number={results.soul}
+                description="Tus deseos internos y motivaciones"
+                type="Alma"
+              />
+              <NumberCard
+                title="Número de Personalidad"
+                number={results.personality}
+                description="Cómo te perciben los demás"
+                type="Personalidad"
+              />
+              <NumberCard
+                title="Número de Expresión"
+                number={results.expression}
+                description="Tus talentos y habilidades naturales"
+                type="Expresión"
               />
               <NumberCard
                 title="Número de Suerte"
                 number={results.luck}
                 description="Tu número de la fortuna"
                 type="Fortuna"
-              />
-              <NumberCard
-                title="Número de Karma"
-                number={results.karma}
-                description="Lecciones de vidas pasadas"
-                type="Karma"
-              />
-              <NumberCard
-                title="Expresión"
-                number={results.expression}
-                description="Tu forma natural de expresarte"
-                type="Expresión"
               />
               <NumberCard
                 title="Año Personal"
@@ -330,7 +329,6 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
             </div>
           </TabsContent>
 
-          {/* Detailed Tab */}
           <TabsContent value="detailed" className="space-y-6">
             <Card className="bg-card/80 backdrop-blur-sm border border-border/50">
               <CardHeader>
@@ -342,17 +340,35 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                     <h3 className="text-xl font-semibold text-accent">Números Principales</h3>
                     <div className="space-y-3">
                       <div className="p-4 bg-background/50 rounded-lg">
-                        <h4 className="font-medium text-primary mb-2">Camino del Alma ({results.soulPath})</h4>
+                        <h4 className="font-medium text-primary mb-2">Número de Destino ({results.destiny})</h4>
+                        <p className="text-sm text-muted-foreground mb-2">
+                          <strong>Cálculo:</strong> Suma de todos los dígitos de tu fecha de nacimiento
+                        </p>
                         <p className="text-sm text-muted-foreground">
-                          Este número revela tu propósito de vida más profundo.
-                          {NUMBER_MEANINGS[results.soulPath as keyof typeof NUMBER_MEANINGS]?.description}
+                          Este número revela tu misión de vida y propósito general.{" "}
+                          {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.description}
                         </p>
                       </div>
                       <div className="p-4 bg-background/50 rounded-lg">
-                        <h4 className="font-medium text-primary mb-2">Destino ({results.destiny})</h4>
+                        <h4 className="font-medium text-primary mb-2">Número del Alma ({results.soul})</h4>
+                        <p className="text-sm text-muted-foreground mb-2">
+                          <strong>Cálculo:</strong> Suma de las vocales de tu nombre completo
+                        </p>
                         <p className="text-sm text-muted-foreground">
-                          Representa lo que estás destinado a lograr en esta vida.
-                          {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.description}
+                          Representa tus deseos internos y motivaciones más profundas.{" "}
+                          {NUMBER_MEANINGS[results.soul as keyof typeof NUMBER_MEANINGS]?.description}
+                        </p>
+                      </div>
+                      <div className="p-4 bg-background/50 rounded-lg">
+                        <h4 className="font-medium text-primary mb-2">
+                          Número de Personalidad ({results.personality})
+                        </h4>
+                        <p className="text-sm text-muted-foreground mb-2">
+                          <strong>Cálculo:</strong> Suma de las consonantes de tu nombre completo
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          Indica cómo te perciben los demás y tu imagen externa.{" "}
+                          {NUMBER_MEANINGS[results.personality as keyof typeof NUMBER_MEANINGS]?.description}
                         </p>
                       </div>
                     </div>
@@ -362,19 +378,61 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                     <h3 className="text-xl font-semibold text-accent">Números Secundarios</h3>
                     <div className="space-y-3">
                       <div className="p-4 bg-background/50 rounded-lg">
-                        <h4 className="font-medium text-primary mb-2">Expresión ({results.expression})</h4>
+                        <h4 className="font-medium text-primary mb-2">Número de Expresión ({results.expression})</h4>
+                        <p className="text-sm text-muted-foreground mb-2">
+                          <strong>Cálculo:</strong> Suma de todas las letras de tu nombre completo
+                        </p>
                         <p className="text-sm text-muted-foreground">
-                          Tu forma natural de expresarte en el mundo.
+                          Revela tus talentos y habilidades naturales.{" "}
                           {NUMBER_MEANINGS[results.expression as keyof typeof NUMBER_MEANINGS]?.description}
                         </p>
                       </div>
                       <div className="p-4 bg-background/50 rounded-lg">
-                        <h4 className="font-medium text-primary mb-2">Año Personal ({results.personalYear})</h4>
+                        <h4 className="font-medium text-primary mb-2">Número de Suerte ({results.luck})</h4>
+                        <p className="text-sm text-muted-foreground mb-2">
+                          <strong>Cálculo:</strong> Combinación de tu Destino y Expresión
+                        </p>
                         <p className="text-sm text-muted-foreground">
-                          La energía que te acompaña durante este año específico.
+                          Tu número de la fortuna que atrae oportunidades favorables.{" "}
+                          {NUMBER_MEANINGS[results.luck as keyof typeof NUMBER_MEANINGS]?.description}
+                        </p>
+                      </div>
+                      <div className="p-4 bg-background/50 rounded-lg">
+                        <h4 className="font-medium text-primary mb-2">Año Personal ({results.personalYear})</h4>
+                        <p className="text-sm text-muted-foreground mb-2">
+                          <strong>Cálculo:</strong> Año actual + mes y día de nacimiento
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          La energía que te acompaña durante este año específico.{" "}
                           {NUMBER_MEANINGS[results.personalYear as keyof typeof NUMBER_MEANINGS]?.description}
                         </p>
                       </div>
+                    </div>
+                  </div>
+                </div>
+
+                <Separator />
+                <div className="p-4 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg">
+                  <h4 className="font-semibold text-primary mb-3 flex items-center gap-2">
+                    <Crown className="w-5 h-5" />
+                    Números Maestros
+                  </h4>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    Los números maestros (11, 22, 33, 44) NO se reducen a un solo dígito porque poseen una vibración
+                    especial y más elevada.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+                    <div className="text-sm">
+                      <strong className="text-accent">Ejemplo correcto:</strong>
+                      <p className="text-muted-foreground">25 → 2+5 = 7 ✓</p>
+                      <p className="text-muted-foreground">33 → NO reducir (es maestro) ✓</p>
+                    </div>
+                    <div className="text-sm">
+                      <strong className="text-accent">Números maestros:</strong>
+                      <p className="text-muted-foreground">11 - El Visionario</p>
+                      <p className="text-muted-foreground">22 - El Maestro Constructor</p>
+                      <p className="text-muted-foreground">33 - El Maestro Sanador</p>
+                      <p className="text-muted-foreground">44 - El Maestro Manifestador</p>
                     </div>
                   </div>
                 </div>
@@ -382,7 +440,6 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
             </Card>
           </TabsContent>
 
-          {/* Esoteric Tab */}
           <TabsContent value="esoteric" className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <Card className="bg-card/80 backdrop-blur-sm border border-border/50">
@@ -393,9 +450,9 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  {[results.soulPath, results.destiny, results.expression].map((num, index) => {
+                  {[results.destiny, results.soul, results.expression].map((num, index) => {
                     const tarot = TAROT_CORRESPONDENCES[num as keyof typeof TAROT_CORRESPONDENCES]
-                    const titles = ["Camino del Alma", "Destino", "Expresión"]
+                    const titles = ["Número de Destino", "Número del Alma", "Número de Expresión"]
                     return tarot ? (
                       <div key={index} className="p-3 bg-background/50 rounded-lg">
                         <h4 className="font-medium text-accent mb-1">{titles[index]}</h4>
@@ -416,9 +473,9 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  {[results.soulPath, results.destiny, results.expression].map((num, index) => {
+                  {[results.destiny, results.soul, results.expression].map((num, index) => {
                     const kabbalah = KABBALAH_CORRESPONDENCES[num as keyof typeof KABBALAH_CORRESPONDENCES]
-                    const titles = ["Camino del Alma", "Destino", "Expresión"]
+                    const titles = ["Número de Destino", "Número del Alma", "Número de Expresión"]
                     return kabbalah ? (
                       <div key={index} className="p-3 bg-background/50 rounded-lg">
                         <h4 className="font-medium text-accent mb-1">{titles[index]}</h4>
@@ -440,9 +497,9 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  {[results.soulPath, results.destiny, results.expression].map((num, index) => {
+                  {[results.destiny, results.soul, results.expression].map((num, index) => {
                     const astrology = ASTROLOGY_CORRESPONDENCES[num as keyof typeof ASTROLOGY_CORRESPONDENCES]
-                    const titles = ["Camino del Alma", "Destino", "Expresión"]
+                    const titles = ["Número de Destino", "Número del Alma", "Número de Expresión"]
                     return astrology ? (
                       <div key={index} className="p-3 bg-background/50 rounded-lg">
                         <h4 className="font-medium text-accent mb-1">{titles[index]}</h4>
@@ -458,7 +515,6 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
             </div>
           </TabsContent>
 
-          {/* Synthesis Tab */}
           <TabsContent value="synthesis" className="space-y-6">
             <Card className="bg-card/80 backdrop-blur-sm border border-border/50">
               <CardHeader>
@@ -479,24 +535,6 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                       <div className="p-4 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg">
                         <h4 className="font-semibold text-primary mb-2 flex items-center gap-2">
                           <Sun className="w-4 h-4" />
-                          Número de Vida ({results.soulPath})
-                        </h4>
-                        <p className="text-sm text-muted-foreground mb-2">
-                          <strong>Significado:</strong>{" "}
-                          {NUMBER_MEANINGS[results.soulPath as keyof typeof NUMBER_MEANINGS]?.title}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          Tu propósito fundamental en esta vida es desarrollar las cualidades de{" "}
-                          {NUMBER_MEANINGS[results.soulPath as keyof typeof NUMBER_MEANINGS]?.keywords
-                            .join(", ")
-                            .toLowerCase()}
-                          . Este número revela tu misión espiritual más profunda y las lecciones que viniste a aprender.
-                        </p>
-                      </div>
-
-                      <div className="p-4 bg-gradient-to-br from-accent/10 to-primary/10 rounded-lg">
-                        <h4 className="font-semibold text-primary mb-2 flex items-center gap-2">
-                          <Crown className="w-4 h-4" />
                           Número de Destino ({results.destiny})
                         </h4>
                         <p className="text-sm text-muted-foreground mb-2">
@@ -504,10 +542,65 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                           {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.title}
                         </p>
                         <p className="text-sm text-muted-foreground">
-                          Tu destino te llama a manifestar{" "}
-                          {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.keywords[0]?.toLowerCase()}{" "}
-                          en el mundo. Este número indica lo que estás destinado a lograr y cómo puedes contribuir a la
-                          humanidad.
+                          Tu misión de vida fundamental es desarrollar las cualidades de{" "}
+                          {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.keywords
+                            .join(", ")
+                            .toLowerCase()}
+                          . Este número revela tu propósito general en esta vida.
+                        </p>
+                      </div>
+
+                      <div className="p-4 bg-gradient-to-br from-accent/10 to-primary/10 rounded-lg">
+                        <h4 className="font-semibold text-primary mb-2 flex items-center gap-2">
+                          <Heart className="w-4 h-4" />
+                          Número del Alma ({results.soul})
+                        </h4>
+                        <p className="text-sm text-muted-foreground mb-2">
+                          <strong>Significado:</strong>{" "}
+                          {NUMBER_MEANINGS[results.soul as keyof typeof NUMBER_MEANINGS]?.title}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          Tus deseos internos y motivaciones más profundas se relacionan con{" "}
+                          {NUMBER_MEANINGS[results.soul as keyof typeof NUMBER_MEANINGS]?.keywords[0]?.toLowerCase()}.
+                          Este número revela lo que tu alma verdaderamente anhela.
+                        </p>
+                      </div>
+
+                      <div className="p-4 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg">
+                        <h4 className="font-semibold text-primary mb-2 flex items-center gap-2">
+                          <Eye className="w-4 h-4" />
+                          Número de Personalidad ({results.personality})
+                        </h4>
+                        <p className="text-sm text-muted-foreground mb-2">
+                          <strong>Significado:</strong>{" "}
+                          {NUMBER_MEANINGS[results.personality as keyof typeof NUMBER_MEANINGS]?.title}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          Los demás te perciben como alguien con{" "}
+                          {NUMBER_MEANINGS[
+                            results.personality as keyof typeof NUMBER_MEANINGS
+                          ]?.keywords[0]?.toLowerCase()}
+                          . Este número indica tu imagen externa y primera impresión.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="p-4 bg-gradient-to-br from-accent/10 to-primary/10 rounded-lg">
+                        <h4 className="font-semibold text-primary mb-2 flex items-center gap-2">
+                          <Crown className="w-4 h-4" />
+                          Número de Expresión ({results.expression})
+                        </h4>
+                        <p className="text-sm text-muted-foreground mb-2">
+                          <strong>Significado:</strong>{" "}
+                          {NUMBER_MEANINGS[results.expression as keyof typeof NUMBER_MEANINGS]?.title}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          Tus talentos y habilidades naturales se manifiestan a través de{" "}
+                          {NUMBER_MEANINGS[
+                            results.expression as keyof typeof NUMBER_MEANINGS
+                          ]?.keywords[1]?.toLowerCase()}
+                          . Este número revela cómo expresas tu esencia única.
                         </p>
                       </div>
 
@@ -517,44 +610,8 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                           Número de Suerte ({results.luck})
                         </h4>
                         <p className="text-sm text-muted-foreground">
-                          La combinación de tu Camino de Vida y Destino crea este número de la fortuna. Representa las
+                          La combinación de tu Destino y Expresión crea este número de la fortuna. Representa las
                           oportunidades que naturalmente se alinean contigo cuando sigues tu propósito auténtico.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="space-y-4">
-                      <div className="p-4 bg-gradient-to-br from-accent/10 to-primary/10 rounded-lg">
-                        <h4 className="font-semibold text-primary mb-2 flex items-center gap-2">
-                          <Heart className="w-4 h-4" />
-                          Expresión ({results.expression})
-                        </h4>
-                        <p className="text-sm text-muted-foreground mb-2">
-                          <strong>Significado:</strong>{" "}
-                          {NUMBER_MEANINGS[results.expression as keyof typeof NUMBER_MEANINGS]?.title}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          Tu forma natural de expresarte en el mundo refleja{" "}
-                          {NUMBER_MEANINGS[
-                            results.expression as keyof typeof NUMBER_MEANINGS
-                          ]?.keywords[1]?.toLowerCase()}
-                          . Este número revela cómo otros te perciben y tu estilo único de comunicación.
-                        </p>
-                      </div>
-
-                      <div className="p-4 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg">
-                        <h4 className="font-semibold text-primary mb-2 flex items-center gap-2">
-                          <Eye className="w-4 h-4" />
-                          Número de Karma ({results.karma})
-                        </h4>
-                        <p className="text-sm text-muted-foreground mb-2">
-                          <strong>Significado:</strong>{" "}
-                          {NUMBER_MEANINGS[results.karma as keyof typeof NUMBER_MEANINGS]?.title}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          Las lecciones kármicas que traes de vidas pasadas se relacionan con desarrollar{" "}
-                          {NUMBER_MEANINGS[results.karma as keyof typeof NUMBER_MEANINGS]?.keywords[0]?.toLowerCase()}.
-                          Este número indica áreas donde necesitas crecer y sanar.
                         </p>
                       </div>
 
@@ -592,240 +649,86 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-4">
-                        <h5 className="font-semibold text-primary">Características Principales</h5>
-                        {zodiacSign.name === "Aries" && (
-                          <div className="space-y-2 text-sm text-muted-foreground">
-                            <p>
-                              <strong>Fortalezas:</strong> Liderazgo natural, valentía, iniciativa, energía pionera
-                            </p>
-                            <p>
-                              <strong>Desafíos:</strong> Impaciencia, impulsividad, tendencia a la competitividad
-                            </p>
-                            <p>
-                              <strong>Misión:</strong> Iniciar nuevos proyectos y liderar con coraje
-                            </p>
-                          </div>
-                        )}
-                        {zodiacSign.name === "Tauro" && (
-                          <div className="space-y-2 text-sm text-muted-foreground">
-                            <p>
-                              <strong>Fortalezas:</strong> Estabilidad, perseverancia, sentido práctico, lealtad
-                            </p>
-                            <p>
-                              <strong>Desafíos:</strong> Terquedad, resistencia al cambio, materialismo
-                            </p>
-                            <p>
-                              <strong>Misión:</strong> Construir bases sólidas y crear belleza duradera
-                            </p>
-                          </div>
-                        )}
-                        {zodiacSign.name === "Géminis" && (
-                          <div className="space-y-2 text-sm text-muted-foreground">
-                            <p>
-                              <strong>Fortalezas:</strong> Versatilidad, comunicación, curiosidad intelectual
-                            </p>
-                            <p>
-                              <strong>Desafíos:</strong> Dispersión, superficialidad, indecisión
-                            </p>
-                            <p>
-                              <strong>Misión:</strong> Conectar ideas y personas a través de la comunicación
-                            </p>
-                          </div>
-                        )}
-                        {zodiacSign.name === "Cáncer" && (
-                          <div className="space-y-2 text-sm text-muted-foreground">
-                            <p>
-                              <strong>Fortalezas:</strong> Intuición, cuidado, sensibilidad emocional
-                            </p>
-                            <p>
-                              <strong>Desafíos:</strong> Hipersensibilidad, tendencia al pasado, cambios de humor
-                            </p>
-                            <p>
-                              <strong>Misión:</strong> Nutrir y proteger a otros con amor incondicional
-                            </p>
-                          </div>
-                        )}
-                        {zodiacSign.name === "Leo" && (
-                          <div className="space-y-2 text-sm text-muted-foreground">
-                            <p>
-                              <strong>Fortalezas:</strong> Creatividad, generosidad, magnetismo personal
-                            </p>
-                            <p>
-                              <strong>Desafíos:</strong> Ego, necesidad de atención, dramatismo
-                            </p>
-                            <p>
-                              <strong>Misión:</strong> Inspirar y crear con el corazón abierto
-                            </p>
-                          </div>
-                        )}
-                        {zodiacSign.name === "Virgo" && (
-                          <div className="space-y-2 text-sm text-muted-foreground">
-                            <p>
-                              <strong>Fortalezas:</strong> Perfeccionismo, servicio, análisis detallado
-                            </p>
-                            <p>
-                              <strong>Desafíos:</strong> Crítica excesiva, preocupación, rigidez
-                            </p>
-                            <p>
-                              <strong>Misión:</strong> Perfeccionar y servir con humildad y precisión
-                            </p>
-                          </div>
-                        )}
-                        {zodiacSign.name === "Libra" && (
-                          <div className="space-y-2 text-sm text-muted-foreground">
-                            <p>
-                              <strong>Fortalezas:</strong> Equilibrio, diplomacia, sentido estético
-                            </p>
-                            <p>
-                              <strong>Desafíos:</strong> Indecisión, dependencia, evitar conflictos
-                            </p>
-                            <p>
-                              <strong>Misión:</strong> Crear armonía y justicia en las relaciones
-                            </p>
-                          </div>
-                        )}
-                        {zodiacSign.name === "Escorpio" && (
-                          <div className="space-y-2 text-sm text-muted-foreground">
-                            <p>
-                              <strong>Fortalezas:</strong> Transformación, intensidad, percepción profunda
-                            </p>
-                            <p>
-                              <strong>Desafíos:</strong> Obsesión, secretismo, tendencias destructivas
-                            </p>
-                            <p>
-                              <strong>Misión:</strong> Transformar y regenerar a través de la crisis
-                            </p>
-                          </div>
-                        )}
-                        {zodiacSign.name === "Sagitario" && (
-                          <div className="space-y-2 text-sm text-muted-foreground">
-                            <p>
-                              <strong>Fortalezas:</strong> Sabiduría, aventura, visión filosófica
-                            </p>
-                            <p>
-                              <strong>Desafíos:</strong> Exceso de confianza, falta de tacto, inquietud
-                            </p>
-                            <p>
-                              <strong>Misión:</strong> Expandir horizontes y compartir sabiduría
-                            </p>
-                          </div>
-                        )}
-                        {zodiacSign.name === "Capricornio" && (
-                          <div className="space-y-2 text-sm text-muted-foreground">
-                            <p>
-                              <strong>Fortalezas:</strong> Ambición, disciplina, responsabilidad
-                            </p>
-                            <p>
-                              <strong>Desafíos:</strong> Rigidez, pesimismo, exceso de trabajo
-                            </p>
-                            <p>
-                              <strong>Misión:</strong> Construir estructuras duraderas con autoridad
-                            </p>
-                          </div>
-                        )}
-                        {zodiacSign.name === "Acuario" && (
-                          <div className="space-y-2 text-sm text-muted-foreground">
-                            <p>
-                              <strong>Fortalezas:</strong> Innovación, humanitarismo, originalidad
-                            </p>
-                            <p>
-                              <strong>Desafíos:</strong> Desapego emocional, rebeldía, excentricidad
-                            </p>
-                            <p>
-                              <strong>Misión:</strong> Revolucionar y humanizar la sociedad
-                            </p>
-                          </div>
-                        )}
-                        {zodiacSign.name === "Piscis" && (
-                          <div className="space-y-2 text-sm text-muted-foreground">
-                            <p>
-                              <strong>Fortalezas:</strong> Compasión, intuición, creatividad espiritual
-                            </p>
-                            <p>
-                              <strong>Desafíos:</strong> Escapismo, confusión, victimización
-                            </p>
-                            <p>
-                              <strong>Misión:</strong> Sanar y trascender a través del amor universal
-                            </p>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="space-y-4">
-                        <h5 className="font-semibold text-primary">Influencia Planetaria</h5>
-                        <div className="space-y-2 text-sm text-muted-foreground">
-                          <p>
-                            <strong>Planeta Regente:</strong> {zodiacSign.planet}
-                          </p>
-                          {zodiacSign.planet === "Sol" && (
-                            <p>
-                              El Sol te otorga vitalidad, creatividad y liderazgo natural. Tu esencia brilla con
-                              confianza y generosidad.
-                            </p>
-                          )}
-                          {zodiacSign.planet === "Luna" && (
-                            <p>
-                              La Luna intensifica tu intuición y sensibilidad emocional. Tu naturaleza es cíclica y
-                              profundamente empática.
-                            </p>
-                          )}
-                          {zodiacSign.planet === "Mercurio" && (
-                            <p>
-                              Mercurio acelera tu mente y comunicación. Posees agilidad mental y versatilidad
-                              intelectual.
-                            </p>
-                          )}
-                          {zodiacSign.planet === "Venus" && (
-                            <p>
-                              Venus te bendice con amor por la belleza y armonía. Tu naturaleza es artística y
-                              diplomática.
-                            </p>
-                          )}
-                          {zodiacSign.planet === "Marte" && (
-                            <p>
-                              Marte te impulsa con energía guerrera y determinación. Tu fuerza de voluntad es
-                              excepcional.
-                            </p>
-                          )}
-                          {zodiacSign.planet === "Júpiter" && (
-                            <p>
-                              Júpiter expande tu visión y sabiduría. Posees optimismo natural y sed de conocimiento.
-                            </p>
-                          )}
-                          {zodiacSign.planet === "Saturno" && (
-                            <p>
-                              Saturno te estructura con disciplina y responsabilidad. Tu camino requiere paciencia y
-                              perseverancia.
-                            </p>
-                          )}
-                          {zodiacSign.planet === "Urano" && (
-                            <p>
-                              Urano te electrifica con originalidad e innovación. Tu naturaleza es revolucionaria y
-                              visionaria.
-                            </p>
-                          )}
-                          {zodiacSign.planet === "Neptuno" && (
-                            <p>
-                              Neptuno te disuelve en compasión y espiritualidad. Tu conexión con lo divino es profunda.
-                            </p>
-                          )}
-                          {zodiacSign.planet === "Plutón" && (
-                            <p>
-                              Plutón te transforma con poder regenerativo. Tu capacidad de metamorfosis es
-                              extraordinaria.
-                            </p>
-                          )}
-                        </div>
-                      </div>
+                    {/* Zodiac-specific interpretation */}
+                    <div className="space-y-4 text-left">
+                      {zodiacSign.name === "Aries" && (
+                        <p className="text-muted-foreground">
+                          Como Aries, tu energía numerológica se amplifica con el fuego marciano. Eres un pionero
+                          natural, y tus números revelan un camino de liderazgo y iniciativa.
+                        </p>
+                      )}
+                      {zodiacSign.name === "Tauro" && (
+                        <p className="text-muted-foreground">
+                          La influencia venusina de Tauro estabiliza tus números, otorgándote perseverancia y una
+                          conexión profunda con la belleza y los valores materiales.
+                        </p>
+                      )}
+                      {zodiacSign.name === "Géminis" && (
+                        <p className="text-muted-foreground">
+                          Mercurio potencia tu versatilidad numerológica. Tus números indican una mente ágil y una
+                          capacidad natural para la comunicación y el aprendizaje.
+                        </p>
+                      )}
+                      {zodiacSign.name === "Cáncer" && (
+                        <p className="text-muted-foreground">
+                          La Luna intensifica tu sensibilidad numerológica. Tus números revelan una conexión profunda
+                          con las emociones y los ciclos naturales de la vida.
+                        </p>
+                      )}
+                      {zodiacSign.name === "Leo" && (
+                        <p className="text-muted-foreground">
+                          El Sol ilumina tu expresión numerológica con creatividad y magnetismo personal. Tus números
+                          indican un destino brillante y una naturaleza generosa.
+                        </p>
+                      )}
+                      {zodiacSign.name === "Virgo" && (
+                        <p className="text-muted-foreground">
+                          Mercurio en Virgo perfecciona tu análisis numerológico. Tus números revelan una búsqueda
+                          constante de la perfección y el servicio a otros.
+                        </p>
+                      )}
+                      {zodiacSign.name === "Libra" && (
+                        <p className="text-muted-foreground">
+                          Venus en Libra armoniza tus números con belleza y equilibrio. Tu camino numerológico busca la
+                          justicia y las relaciones armoniosas.
+                        </p>
+                      )}
+                      {zodiacSign.name === "Escorpio" && (
+                        <p className="text-muted-foreground">
+                          Plutón transforma profundamente tu expresión numerológica. Tus números indican una capacidad
+                          única para la regeneración y la transformación.
+                        </p>
+                      )}
+                      {zodiacSign.name === "Sagitario" && (
+                        <p className="text-muted-foreground">
+                          Júpiter expande tu visión numerológica hacia horizontes filosóficos. Tus números revelan una
+                          búsqueda constante de sabiduría y aventura.
+                        </p>
+                      )}
+                      {zodiacSign.name === "Capricornio" && (
+                        <p className="text-muted-foreground">
+                          Saturno estructura tu camino numerológico con disciplina y ambición. Tus números indican una
+                          capacidad natural para el logro y la responsabilidad.
+                        </p>
+                      )}
+                      {zodiacSign.name === "Acuario" && (
+                        <p className="text-muted-foreground">
+                          Urano electrifica tu expresión numerológica con innovación y originalidad. Tus números revelan
+                          una visión futurista y un espíritu humanitario.
+                        </p>
+                      )}
+                      {zodiacSign.name === "Piscis" && (
+                        <p className="text-muted-foreground">
+                          Neptuno disuelve las barreras de tu intuición numerológica. Tus números indican una conexión
+                          profunda con lo espiritual y lo creativo.
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
 
                 <Separator />
 
-                {/* 3. Puntos de Convergencia */}
                 <div className="space-y-6">
                   <h3 className="text-xl font-semibold text-accent border-b border-border/50 pb-2">
                     3. Puntos de Convergencia entre Numerología y Astrología
@@ -838,12 +741,12 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                         <div className="flex items-start gap-2">
                           <Star className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
                           <p>
-                            Tu Camino de Vida {results.soulPath} (
-                            {NUMBER_MEANINGS[results.soulPath as keyof typeof NUMBER_MEANINGS]?.title}) resuena
+                            Tu Número de Destino {results.destiny} (
+                            {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.title}) resuena
                             perfectamente con la energía {zodiacSign.element.toLowerCase()} de {zodiacSign.name},
                             amplificando tu capacidad para{" "}
                             {NUMBER_MEANINGS[
-                              results.soulPath as keyof typeof NUMBER_MEANINGS
+                              results.destiny as keyof typeof NUMBER_MEANINGS
                             ]?.keywords[0]?.toLowerCase()}
                             .
                           </p>
@@ -851,10 +754,10 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                         <div className="flex items-start gap-2">
                           <Crown className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                           <p>
-                            El planeta {zodiacSign.planet} que rige tu signo potencia tu Número de Destino{" "}
-                            {results.destiny}, creando una sinergia única para manifestar{" "}
+                            El planeta {zodiacSign.planet} que rige tu signo potencia tu Número de Expresión{" "}
+                            {results.expression}, creando una sinergia única para manifestar{" "}
                             {NUMBER_MEANINGS[
-                              results.destiny as keyof typeof NUMBER_MEANINGS
+                              results.expression as keyof typeof NUMBER_MEANINGS
                             ]?.keywords[1]?.toLowerCase()}
                             .
                           </p>
@@ -862,8 +765,8 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                         <div className="flex items-start gap-2">
                           <Heart className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
                           <p>
-                            Tu Expresión {results.expression} se alinea con las cualidades naturales de{" "}
-                            {zodiacSign.name}, facilitando tu comunicación auténtica y expresión personal.
+                            Tu Número del Alma {results.soul} se alinea con las cualidades naturales de{" "}
+                            {zodiacSign.name}, facilitando la expresión de tus deseos más profundos.
                           </p>
                         </div>
                       </div>
@@ -877,7 +780,7 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                           <p>
                             Mientras tu numerología enfatiza{" "}
                             {NUMBER_MEANINGS[
-                              results.soulPath as keyof typeof NUMBER_MEANINGS
+                              results.destiny as keyof typeof NUMBER_MEANINGS
                             ]?.keywords[0]?.toLowerCase()}
                             , tu signo {zodiacSign.name} aporta la cualidad complementaria del elemento{" "}
                             {zodiacSign.element.toLowerCase()}.
@@ -886,8 +789,9 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                         <div className="flex items-start gap-2">
                           <Sparkles className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
                           <p>
-                            Tu Karma numerológico {results.karma} puede encontrar equilibrio a través de las fortalezas
-                            naturales que te otorga {zodiacSign.planet}, creando un camino de sanación integral.
+                            Tu Número de Personalidad {results.personality} puede encontrar equilibrio a través de las
+                            fortalezas naturales que te otorga {zodiacSign.planet}, creando un camino de desarrollo
+                            integral.
                           </p>
                         </div>
                         <div className="flex items-start gap-2">
@@ -916,11 +820,11 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                       <p className="text-center text-lg leading-relaxed">
                         Eres una persona cuya esencia combina la sabiduría numerológica del{" "}
                         <span className="text-primary font-semibold">
-                          {NUMBER_MEANINGS[results.soulPath as keyof typeof NUMBER_MEANINGS]?.title}
+                          {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.title}
                         </span>{" "}
                         con la energía cósmica de {zodiacSign.name}. Esta combinación única te otorga una perspectiva
                         especial sobre la vida, donde la{" "}
-                        {NUMBER_MEANINGS[results.soulPath as keyof typeof NUMBER_MEANINGS]?.keywords[0]?.toLowerCase()}
+                        {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.keywords[0]?.toLowerCase()}
                         se expresa a través del elemento {zodiacSign.element.toLowerCase()}.
                       </p>
 
@@ -928,7 +832,7 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                         <div className="text-center p-4 bg-background/50 rounded-lg">
                           <h5 className="font-semibold text-accent mb-2">Fortaleza Principal</h5>
                           <p className="text-sm">
-                            {NUMBER_MEANINGS[results.soulPath as keyof typeof NUMBER_MEANINGS]?.keywords[0]}
+                            {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.keywords[0]}
                             potenciada por la energía {zodiacSign.element.toLowerCase()} de {zodiacSign.name}
                           </p>
                         </div>
@@ -936,8 +840,10 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                           <h5 className="font-semibold text-accent mb-2">Desafío a Superar</h5>
                           <p className="text-sm">
                             Equilibrar tu{" "}
-                            {NUMBER_MEANINGS[results.karma as keyof typeof NUMBER_MEANINGS]?.keywords[0]?.toLowerCase()}
-                            kármico con la influencia de {zodiacSign.planet}
+                            {NUMBER_MEANINGS[
+                              results.personality as keyof typeof NUMBER_MEANINGS
+                            ]?.keywords[0]?.toLowerCase()}
+                            externa con la influencia de {zodiacSign.planet}
                           </p>
                         </div>
                         <div className="text-center p-4 bg-background/50 rounded-lg">
@@ -945,7 +851,7 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                           <p className="text-sm">
                             Manifestar{" "}
                             {NUMBER_MEANINGS[
-                              results.destiny as keyof typeof NUMBER_MEANINGS
+                              results.expression as keyof typeof NUMBER_MEANINGS
                             ]?.keywords[1]?.toLowerCase()}
                             a través de tu naturaleza {zodiacSign.name}
                           </p>
@@ -971,17 +877,16 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                           <h5 className="font-medium text-accent mb-1">Meditación Recomendada</h5>
                           <p className="text-sm text-muted-foreground">
                             Practica meditación enfocada en el elemento {zodiacSign.element.toLowerCase()} para
-                            armonizar tu energía numerológica {results.soulPath} con tu naturaleza astrológica.
+                            armonizar tu energía numerológica {results.destiny} con tu naturaleza astrológica.
                           </p>
                         </div>
                         <div className="p-3 bg-background/50 rounded-lg">
                           <h5 className="font-medium text-accent mb-1">Afirmación Personal</h5>
                           <p className="text-sm text-muted-foreground italic">
-                            "Soy{" "}
-                            {NUMBER_MEANINGS[results.soulPath as keyof typeof NUMBER_MEANINGS]?.title.toLowerCase()}y
-                            expreso mi{" "}
+                            "Soy {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.title.toLowerCase()}
+                            y expreso mi{" "}
                             {NUMBER_MEANINGS[
-                              results.soulPath as keyof typeof NUMBER_MEANINGS
+                              results.destiny as keyof typeof NUMBER_MEANINGS
                             ]?.keywords[0]?.toLowerCase()}
                             a través de la sabiduría de {zodiacSign.name}."
                           </p>
@@ -1020,9 +925,9 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                     <h4 className="font-semibold text-primary mb-3 text-center">Mensaje Integrado para tu Camino</h4>
                     <p className="text-muted-foreground text-center leading-relaxed">
                       Tu combinación única de numerología y astrología te convierte en{" "}
-                      {NUMBER_MEANINGS[results.soulPath as keyof typeof NUMBER_MEANINGS]?.title.toLowerCase()}
+                      {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.title.toLowerCase()}
                       con alma de {zodiacSign.name}. Abraza tanto tu{" "}
-                      {NUMBER_MEANINGS[results.soulPath as keyof typeof NUMBER_MEANINGS]?.keywords[0]?.toLowerCase()}
+                      {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.keywords[0]?.toLowerCase()}
                       numerológica como tu naturaleza {zodiacSign.element.toLowerCase()}, pues en esta síntesis
                       encontrarás tu mayor poder y tu contribución más auténtica al mundo. El universo te ha dotado de
                       herramientas tanto terrestres como cósmicas para cumplir tu propósito divino.
@@ -1033,7 +938,7 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
             </Card>
           </TabsContent>
 
-          {/* Astrology Tab */}
+          {/* Updated Astrology Tab with correct nomenclature */}
           <TabsContent value="astrology" className="space-y-6">
             <Card className="bg-card/80 backdrop-blur-sm border border-border/50">
               <CardHeader>
@@ -1131,9 +1036,9 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-primary">Síntesis Astro-Numerológica</h4>
                     <p className="text-sm text-muted-foreground">
-                      Tu Camino del Alma ({results.soulPath}) resuena con la energía {zodiacSign.element.toLowerCase()}
+                      Tu Número de Destino ({results.destiny}) resuena con la energía {zodiacSign.element.toLowerCase()}{" "}
                       de {zodiacSign.name}, creando una vibración única que combina
-                      {NUMBER_MEANINGS[results.soulPath as keyof typeof NUMBER_MEANINGS]?.keywords[0]?.toLowerCase()}
+                      {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.keywords[0]?.toLowerCase()}
                       con la influencia planetaria de {zodiacSign.planet}.
                     </p>
                   </div>
@@ -1141,9 +1046,9 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-primary">Compatibilidad Cósmica</h4>
                     <p className="text-sm text-muted-foreground">
-                      Tu Número de Destino ({results.destiny}) se alinea perfectamente con las cualidades de{" "}
+                      Tu Número de Expresión ({results.expression}) se alinea perfectamente con las cualidades de{" "}
                       {zodiacSign.name}, potenciando tu capacidad para manifestar
-                      {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.keywords[1]?.toLowerCase()}
+                      {NUMBER_MEANINGS[results.expression as keyof typeof NUMBER_MEANINGS]?.keywords[1]?.toLowerCase()}
                       en el plano material.
                     </p>
                   </div>
