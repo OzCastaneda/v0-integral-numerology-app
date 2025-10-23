@@ -18,6 +18,7 @@ import {
 import type { NumerologyResult } from "@/lib/numerology-calculations"
 import { getFormattedBirthDate } from "@/lib/numerology-calculations"
 import { Star, Moon, Sun, Sparkles, Eye, Crown, Heart, Download, Loader2 } from "lucide-react"
+import { getZodiacKabbalah } from "@/lib/astrology-kabbalah"
 
 interface NumerologyResultsProps {
   results: NumerologyResult
@@ -233,6 +234,7 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
   }
 
   const zodiacSign = getZodiacSign(userData.birthDate)
+  const zodiacKabbalah = getZodiacKabbalah(userData.birthDate)
 
   return (
     <div className="min-h-screen relative">
@@ -263,16 +265,20 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
           <div className="space-y-3">
             <p className="text-2xl text-accent font-semibold">{userData.fullName}</p>
             <p className="text-lg text-muted-foreground">
-              Nacido el {getFormattedBirthDate(userData.birthDate)} • Signo: {zodiacSign.name}
+              Nacido el {getFormattedBirthDate(userData.birthDate)} • Signo: {zodiacKabbalah.name}
             </p>
             <div className="flex justify-center items-center gap-4 text-sm text-muted-foreground">
               <span className="flex items-center gap-1">
                 <Star className="h-4 w-4 text-accent" />
-                Elemento: {zodiacSign.element}
+                Elemento: {zodiacKabbalah.element}
               </span>
               <span className="flex items-center gap-1">
                 <Sun className="h-4 w-4 text-primary" />
-                Planeta: {zodiacSign.planet}
+                Planeta: {zodiacKabbalah.planet}
+              </span>
+              <span className="flex items-center gap-1">
+                <Moon className="h-4 w-4 text-accent" />
+                Mes Hebreo: {zodiacKabbalah.hebrewMonth}
               </span>
             </div>
           </div>
@@ -729,6 +735,7 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
 
                 <Separator />
 
+                {/* 3. Puntos de Convergencia entre Numerología y Astrología */}
                 <div className="space-y-6">
                   <h3 className="text-xl font-semibold text-accent border-b border-border/50 pb-2">
                     3. Puntos de Convergencia entre Numerología y Astrología
@@ -938,120 +945,156 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
             </Card>
           </TabsContent>
 
-          {/* Updated Astrology Tab with correct nomenclature */}
           <TabsContent value="astrology" className="space-y-6">
             <Card className="bg-card/80 backdrop-blur-sm border border-border/50">
               <CardHeader>
                 <CardTitle className="text-2xl text-primary flex items-center gap-2">
                   <Sun className="w-6 h-6" />
-                  Interpretación Astrológica
+                  Astrología Cabalística - {zodiacKabbalah.name}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="text-center p-6 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg">
-                  <h3 className="text-2xl font-bold text-accent mb-2">{zodiacSign.name}</h3>
+              <CardContent className="space-y-8">
+                {/* Header Section */}
+                <div className="text-center p-6 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg border border-primary/20">
+                  <h3 className="text-3xl font-bold text-accent mb-3">{zodiacKabbalah.name}</h3>
                   <p className="text-lg text-muted-foreground mb-4">
-                    Elemento {zodiacSign.element} • Regido por {zodiacSign.planet}
+                    Mes Hebreo: {zodiacKabbalah.hebrewMonth} • Mes de {zodiacKabbalah.monthOf}
                   </p>
-
-                  {/* Zodiac-specific interpretation */}
-                  <div className="space-y-4 text-left">
-                    {zodiacSign.name === "Aries" && (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                    <div className="p-3 bg-background/50 rounded-lg">
+                      <p className="text-accent font-semibold mb-1">Letra Hebrea</p>
+                      <p className="text-muted-foreground">{zodiacKabbalah.hebrewLetter}</p>
+                    </div>
+                    <div className="p-3 bg-background/50 rounded-lg">
+                      <p className="text-accent font-semibold mb-1">Planeta Regente</p>
                       <p className="text-muted-foreground">
-                        Como Aries, tu energía numerológica se amplifica con el fuego marciano. Eres un pionero natural,
-                        y tus números revelan un camino de liderazgo y iniciativa.
+                        {zodiacKabbalah.planet} ({zodiacKabbalah.planetLetter})
                       </p>
-                    )}
-                    {zodiacSign.name === "Tauro" && (
-                      <p className="text-muted-foreground">
-                        La influencia venusina de Tauro estabiliza tus números, otorgándote perseverancia y una conexión
-                        profunda con la belleza y los valores materiales.
-                      </p>
-                    )}
-                    {zodiacSign.name === "Géminis" && (
-                      <p className="text-muted-foreground">
-                        Mercurio potencia tu versatilidad numerológica. Tus números indican una mente ágil y una
-                        capacidad natural para la comunicación y el aprendizaje.
-                      </p>
-                    )}
-                    {zodiacSign.name === "Cáncer" && (
-                      <p className="text-muted-foreground">
-                        La Luna intensifica tu sensibilidad numerológica. Tus números revelan una conexión profunda con
-                        las emociones y los ciclos naturales de la vida.
-                      </p>
-                    )}
-                    {zodiacSign.name === "Leo" && (
-                      <p className="text-muted-foreground">
-                        El Sol ilumina tu expresión numerológica con creatividad y magnetismo personal. Tus números
-                        indican un destino brillante y una naturaleza generosa.
-                      </p>
-                    )}
-                    {zodiacSign.name === "Virgo" && (
-                      <p className="text-muted-foreground">
-                        Mercurio en Virgo perfecciona tu análisis numerológico. Tus números revelan una búsqueda
-                        constante de la perfección y el servicio a otros.
-                      </p>
-                    )}
-                    {zodiacSign.name === "Libra" && (
-                      <p className="text-muted-foreground">
-                        Venus en Libra armoniza tus números con belleza y equilibrio. Tu camino numerológico busca la
-                        justicia y las relaciones armoniosas.
-                      </p>
-                    )}
-                    {zodiacSign.name === "Escorpio" && (
-                      <p className="text-muted-foreground">
-                        Plutón transforma profundamente tu expresión numerológica. Tus números indican una capacidad
-                        única para la regeneración y la transformación.
-                      </p>
-                    )}
-                    {zodiacSign.name === "Sagitario" && (
-                      <p className="text-muted-foreground">
-                        Júpiter expande tu visión numerológica hacia horizontes filosóficos. Tus números revelan una
-                        búsqueda constante de sabiduría y aventura.
-                      </p>
-                    )}
-                    {zodiacSign.name === "Capricornio" && (
-                      <p className="text-muted-foreground">
-                        Saturno estructura tu camino numerológico con disciplina y ambición. Tus números indican una
-                        capacidad natural para el logro y la responsabilidad.
-                      </p>
-                    )}
-                    {zodiacSign.name === "Acuario" && (
-                      <p className="text-muted-foreground">
-                        Urano electrifica tu expresión numerológica con innovación y originalidad. Tus números revelan
-                        una visión futurista y un espíritu humanitario.
-                      </p>
-                    )}
-                    {zodiacSign.name === "Piscis" && (
-                      <p className="text-muted-foreground">
-                        Neptuno disuelve las barreras de tu intuición numerológica. Tus números indican una conexión
-                        profunda con lo espiritual y lo creativo.
-                      </p>
-                    )}
+                    </div>
+                    <div className="p-3 bg-background/50 rounded-lg">
+                      <p className="text-accent font-semibold mb-1">Elemento</p>
+                      <p className="text-muted-foreground">{zodiacKabbalah.element}</p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Numerological-Astrological synthesis */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-primary">Síntesis Astro-Numerológica</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Tu Número de Destino ({results.destiny}) resuena con la energía {zodiacSign.element.toLowerCase()}{" "}
-                      de {zodiacSign.name}, creando una vibración única que combina
-                      {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.keywords[0]?.toLowerCase()}
-                      con la influencia planetaria de {zodiacSign.planet}.
-                    </p>
-                  </div>
+                {/* Spiritual Meaning */}
+                <div className="space-y-4">
+                  <h4 className="text-xl font-semibold text-primary border-b border-border/50 pb-2">
+                    Significado Espiritual Cabalístico
+                  </h4>
+                  <p className="text-muted-foreground leading-relaxed">{zodiacKabbalah.spiritualMeaning}</p>
+                </div>
 
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-primary">Compatibilidad Cósmica</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Tu Número de Expresión ({results.expression}) se alinea perfectamente con las cualidades de{" "}
-                      {zodiacSign.name}, potenciando tu capacidad para manifestar
-                      {NUMBER_MEANINGS[results.expression as keyof typeof NUMBER_MEANINGS]?.keywords[1]?.toLowerCase()}
-                      en el plano material.
-                    </p>
+                <Separator />
+
+                {/* Characteristics */}
+                <div className="space-y-4">
+                  <h4 className="text-xl font-semibold text-primary border-b border-border/50 pb-2">
+                    Características Principales
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {zodiacKabbalah.characteristics.map((char, index) => (
+                      <div key={index} className="flex items-start gap-2 p-3 bg-background/50 rounded-lg">
+                        <Star className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                        <p className="text-sm text-muted-foreground">{char}</p>
+                      </div>
+                    ))}
                   </div>
+                </div>
+
+                <Separator />
+
+                {/* Tikun (Correction) */}
+                <div className="space-y-4">
+                  <h4 className="text-xl font-semibold text-primary border-b border-border/50 pb-2 flex items-center gap-2">
+                    <Crown className="w-5 h-5" />
+                    Tikún - Tu Corrección Espiritual
+                  </h4>
+                  <div className="p-6 bg-gradient-to-br from-accent/10 to-primary/10 rounded-lg">
+                    <p className="text-muted-foreground leading-relaxed mb-4">{zodiacKabbalah.correction}</p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                      <div className="p-4 bg-background/50 rounded-lg">
+                        <h5 className="font-semibold text-accent mb-2 flex items-center gap-2">
+                          <Moon className="w-4 h-4" />
+                          Vida Pasada (Nodo Sur)
+                        </h5>
+                        <p className="text-sm text-muted-foreground">{zodiacKabbalah.tikun.pastLife}</p>
+                      </div>
+                      <div className="p-4 bg-background/50 rounded-lg">
+                        <h5 className="font-semibold text-primary mb-2 flex items-center gap-2">
+                          <Sun className="w-4 h-4" />
+                          Lección Actual (Nodo Norte)
+                        </h5>
+                        <p className="text-sm text-muted-foreground">{zodiacKabbalah.tikun.currentLesson}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <Separator />
+
+                {/* Monthly Strategy */}
+                <div className="space-y-4">
+                  <h4 className="text-xl font-semibold text-primary border-b border-border/50 pb-2">
+                    Estrategia Mensual Universal
+                  </h4>
+                  <div className="p-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg">
+                    <p className="text-muted-foreground leading-relaxed">{zodiacKabbalah.monthlyStrategy}</p>
+                  </div>
+                </div>
+
+                <Separator />
+
+                {/* Integration with Numerology */}
+                <div className="space-y-4">
+                  <h4 className="text-xl font-semibold text-primary border-b border-border/50 pb-2">
+                    Integración Astro-Numerológica
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="p-4 bg-background/50 rounded-lg">
+                      <h5 className="font-semibold text-accent mb-3">Síntesis con tu Destino</h5>
+                      <p className="text-sm text-muted-foreground">
+                        Tu Número de Destino ({results.destiny}) -{" "}
+                        {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.title} - resuena con la
+                        energía {zodiacKabbalah.element.toLowerCase()} de {zodiacKabbalah.name}. La letra hebrea{" "}
+                        {zodiacKabbalah.hebrewLetter} amplifica tu capacidad para manifestar{" "}
+                        {NUMBER_MEANINGS[results.destiny as keyof typeof NUMBER_MEANINGS]?.keywords[0]?.toLowerCase()}.
+                      </p>
+                    </div>
+
+                    <div className="p-4 bg-background/50 rounded-lg">
+                      <h5 className="font-semibold text-accent mb-3">Compatibilidad Cósmica</h5>
+                      <p className="text-sm text-muted-foreground">
+                        Tu Número de Expresión ({results.expression}) se alinea con las cualidades de{" "}
+                        {zodiacKabbalah.name}, potenciando tu capacidad para expresar{" "}
+                        {NUMBER_MEANINGS[
+                          results.expression as keyof typeof NUMBER_MEANINGS
+                        ]?.keywords[1]?.toLowerCase()}
+                        . El planeta {zodiacKabbalah.planet} ({zodiacKabbalah.planetLetter}) facilita esta
+                        manifestación.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Message from Rav Berg */}
+                <div className="p-6 bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 rounded-lg border-2 border-primary/20">
+                  <h4 className="text-lg font-semibold text-primary mb-3 text-center flex items-center justify-center gap-2">
+                    <Sparkles className="w-5 h-5" />
+                    Mensaje Cabalístico para {zodiacKabbalah.name}
+                  </h4>
+                  <p className="text-muted-foreground text-center leading-relaxed italic">
+                    "Naciste en el mes de {zodiacKabbalah.hebrewMonth}, el mes de {zodiacKabbalah.monthOf}. La letra
+                    hebrea {zodiacKabbalah.hebrewLetter} te otorga poderes únicos, pero también responsabilidades
+                    específicas. Tu Tikún es claro: {zodiacKabbalah.correction.split(".")[0]}. Recuerda que las
+                    estrellas inclinan pero no obligan - tienes libre albedrío para superar tus limitaciones y cumplir
+                    tu propósito divino."
+                  </p>
+                  <p className="text-sm text-accent text-center mt-4">
+                    - Basado en las enseñanzas del Rav Philip S. Berg
+                  </p>
                 </div>
               </CardContent>
             </Card>
