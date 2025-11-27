@@ -1,40 +1,36 @@
-import type React from "react"
-import { Sun, Moon, Star, Sparkles, Crown, Heart, Wand2, Infinity } from "lucide-react"
+import { Sparkles, Heart, Infinity as Trinity, Hexagon, Star, Lightbulb, Infinity, Wand2, Crown } from "lucide-react"
 
 export const getNumberIcon = (number: number) => {
-  const iconProps = { className: "w-5 h-5 text-primary" }
+  const iconClass = "w-5 h-5"
 
-  const icons: Record<number, React.ReactNode> = {
-    1: <Sun {...iconProps} />,
-    2: <Moon {...iconProps} />,
-    3: <Sparkles {...iconProps} />,
-    4: <Square {...iconProps} />,
-    5: <Wand2 {...iconProps} />,
-    6: <Heart {...iconProps} />,
-    7: <Star {...iconProps} />,
-    8: <Crown {...iconProps} />,
-    9: <Infinity {...iconProps} />,
-    11: <Crown {...iconProps} />,
-    22: <Crown {...iconProps} />,
-    33: <Heart {...iconProps} />,
-    44: <Square {...iconProps} />,
+  switch (number) {
+    case 1:
+      return <Sparkles className={iconClass} />
+    case 2:
+      return <Heart className={iconClass} />
+    case 3:
+      return <Trinity className={iconClass} />
+    case 4:
+      return <Hexagon className={iconClass} />
+    case 5:
+      return <Star className={iconClass} />
+    case 6:
+      return <Lightbulb className={iconClass} />
+    case 7:
+      return <Infinity className={iconClass} />
+    case 8:
+      return <Wand2 className={iconClass} />
+    case 9:
+      return <Crown className={iconClass} />
+    case 11:
+      return <Star className={`${iconClass} text-yellow-500`} />
+    case 22:
+      return <Crown className={`${iconClass} text-purple-500`} />
+    case 33:
+      return <Sparkles className={`${iconClass} text-pink-500`} />
+    case 44:
+      return <Infinity className={`${iconClass} text-indigo-500`} />
+    default:
+      return <Sparkles className={iconClass} />
   }
-
-  return icons[number] || <Sparkles {...iconProps} />
 }
-
-// Square icon component for consistency with lucide-react
-const Square = ({ className }: { className?: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-  </svg>
-)
