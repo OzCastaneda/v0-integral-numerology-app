@@ -12,7 +12,7 @@ export function MysticalFooter() {
       <MetatronsCube className="top-4 right-1/4 translate-x-1/2 -translate-y-1/2" size={80} color="#4169E1" />
 
       <div className="max-w-6xl mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8">
           {/* Contact Information */}
           <div className="space-y-4">
             <h3 className="text-xl font-semibold text-accent flex items-center gap-2">
@@ -22,11 +22,11 @@ export function MysticalFooter() {
             <div className="space-y-3 text-muted-foreground">
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-primary" />
-                <span>consultas@numerologia-integral.com</span>
+                <span>angelusignis777@gmail.com</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-primary" />
-                <span>+1 (555) 123-4567</span>
+                <span>+57 3228352645</span>
               </div>
               <div className="flex items-center gap-3">
                 <MapPin className="h-4 w-4 text-primary" />
@@ -72,7 +72,7 @@ export function MysticalFooter() {
         <Separator className="my-8" />
 
         {/* Bottom section */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-between items-center text-xs sm:text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
             <Star className="h-4 w-4 text-accent" />
             <span>© 2025 Numerología Integral. Todos los derechos reservados.</span>

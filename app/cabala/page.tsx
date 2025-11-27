@@ -70,7 +70,7 @@ export default function CabalaPage() {
               conectadas por 22 senderos que corresponden a las 22 letras del alfabeto hebreo.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
               {[
                 { num: 1, name: "Kether", meaning: "Corona", desc: "La fuente divina, unidad primordial" },
                 { num: 2, name: "Chokmah", meaning: "Sabiduría", desc: "Sabiduría divina, fuerza activa" },
@@ -83,15 +83,15 @@ export default function CabalaPage() {
                 { num: 9, name: "Yesod", meaning: "Fundamento", desc: "Base, imaginación, subconsciente" },
                 { num: 10, name: "Malkuth", meaning: "Reino", desc: "Manifestación física, tierra" },
               ].map((sefira) => (
-                <div key={sefira.num} className="p-4 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg">
+                <div key={sefira.num} className="p-3 sm:p-4 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="text-2xl font-bold text-primary">{sefira.num}</div>
+                    <div className="text-xl sm:text-2xl font-bold text-primary">{sefira.num}</div>
                     <div>
-                      <h4 className="font-semibold text-accent">{sefira.name}</h4>
+                      <h4 className="font-semibold text-accent text-sm">{sefira.name}</h4>
                       <p className="text-xs text-muted-foreground">{sefira.meaning}</p>
                     </div>
                   </div>
-                  <p className="text-sm text-muted-foreground">{sefira.desc}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{sefira.desc}</p>
                 </div>
               ))}
             </div>
@@ -113,7 +113,7 @@ export default function CabalaPage() {
               cualidad espiritual y una fuerza cósmica.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
               {[
                 { num: 1, sefira: "Kether", meaning: "Unidad divina, el principio de todo" },
                 { num: 2, sefira: "Chokmah", meaning: "Dualidad, sabiduría activa" },
@@ -125,10 +125,10 @@ export default function CabalaPage() {
                 { num: 8, sefira: "Hod", meaning: "Gloria, esplendor intelectual" },
                 { num: 9, sefira: "Yesod", meaning: "Fundamento, base de manifestación" },
               ].map((item) => (
-                <div key={item.num} className="p-4 bg-background/50 rounded-lg">
-                  <div className="text-3xl font-bold text-primary mb-2">{item.num}</div>
-                  <h4 className="font-semibold text-accent mb-1">{item.sefira}</h4>
-                  <p className="text-sm text-muted-foreground">{item.meaning}</p>
+                <div key={item.num} className="p-3 sm:p-4 bg-background/50 rounded-lg">
+                  <div className="text-2xl sm:text-3xl font-bold text-primary mb-2">{item.num}</div>
+                  <h4 className="font-semibold text-accent mb-1 text-sm sm:text-base">{item.sefira}</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{item.meaning}</p>
                 </div>
               ))}
             </div>
@@ -189,9 +189,9 @@ export default function CabalaPage() {
                   desc: "El fundamento y la base. Representa el subconsciente, los sueños, y el puente entre lo espiritual y lo material.",
                 },
               ].map((item) => (
-                <div key={item.num} className="p-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg">
-                  <h4 className="font-semibold text-accent mb-2">{item.title}</h4>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                <div key={item.num} className="p-3 sm:p-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg">
+                  <h4 className="font-semibold text-accent mb-2 text-sm sm:text-base">{item.title}</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{item.desc}</p>
                 </div>
               ))}
             </div>

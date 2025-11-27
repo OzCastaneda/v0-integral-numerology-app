@@ -348,7 +348,7 @@ export default function TarotPage() {
                 <div className="space-y-4">
                   <h3 className="text-xl font-semibold text-primary">Los Cuatro Palos</h3>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                     <Card className="bg-card/50 border border-primary/30">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-lg text-primary flex items-center gap-2">
@@ -442,7 +442,7 @@ export default function TarotPage() {
                   <p className="text-sm text-muted-foreground mb-3">
                     Cada palo tiene cuatro cartas cortesanas que representan diferentes aspectos de la personalidad:
                   </p>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm">
                     <div className="p-2 bg-background/50 rounded">
                       <p className="font-medium text-primary">Paje</p>
                       <p className="text-xs text-muted-foreground">Mensajero, Novicio</p>
