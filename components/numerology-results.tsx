@@ -213,17 +213,26 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
           </div>
         </div>
 
-        {/* Tabs Navigation */}
+        {/* Tabs Navigation - CHANGE: Responsive grid for mobile, scrollable on small screens */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="resumen">Resumen</TabsTrigger>
-            <TabsTrigger value="analisis">Análisis Numerológico Completo</TabsTrigger>
-            <TabsTrigger value="sintesis">Síntesis Integrada</TabsTrigger>
-            <TabsTrigger value="astrologia">Astrología Cabalística</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-2 h-auto p-2">
+            <TabsTrigger value="resumen" className="text-xs sm:text-sm md:text-base py-2 sm:py-3">
+              Resumen
+            </TabsTrigger>
+            <TabsTrigger value="analisis" className="text-xs sm:text-sm md:text-base py-2 sm:py-3">
+              Análisis
+            </TabsTrigger>
+            <TabsTrigger value="sintesis" className="text-xs sm:text-sm md:text-base py-2 sm:py-3">
+              Síntesis
+            </TabsTrigger>
+            <TabsTrigger value="astrologia" className="text-xs sm:text-sm md:text-base py-2 sm:py-3">
+              Astrología
+            </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="resumen" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* CHANGE: Add responsive padding and spacing for each tab content */}
+          <TabsContent value="resumen" className="space-y-4 sm:space-y-6 px-2 sm:px-4 py-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
               <NumberCard
                 title="Número de Destino"
                 number={results.destiny}
@@ -263,7 +272,7 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
             </div>
           </TabsContent>
 
-          <TabsContent value="analisis" className="space-y-6">
+          <TabsContent value="analisis" className="space-y-4 sm:space-y-6 px-2 sm:px-4 py-4">
             <Card className="bg-card/80 backdrop-blur-sm border border-border/50">
               <CardHeader>
                 <CardTitle className="text-2xl text-primary">Análisis Numerológico Completo</CardTitle>
@@ -439,7 +448,7 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
             </Card>
           </TabsContent>
 
-          <TabsContent value="sintesis" className="space-y-6">
+          <TabsContent value="sintesis" className="space-y-4 sm:space-y-6 px-2 sm:px-4 py-4">
             <Card className="border-primary/20 bg-gradient-to-br from-background to-accent/5">
               <CardHeader className="border-b border-primary/20">
                 <CardTitle className="text-2xl text-primary">
@@ -503,7 +512,7 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
             </Card>
           </TabsContent>
 
-          <TabsContent value="astrologia" className="space-y-6">
+          <TabsContent value="astrologia" className="space-y-4 sm:space-y-6 px-2 sm:px-4 py-4">
             <Card className="border-primary/20 bg-gradient-to-br from-background to-accent/5">
               <CardHeader className="border-b border-primary/20">
                 <CardTitle className="text-2xl text-primary">Astrología Cabalística: Tu Signo Zodiacal</CardTitle>
