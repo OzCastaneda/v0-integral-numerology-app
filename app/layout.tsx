@@ -4,14 +4,15 @@ import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import { MysticalBackground } from "@/components/mystical-background"
 import { FloatingSymbols } from "@/components/floating-symbols"
+import { Navigation } from "@/components/navigation"
 import "./globals.css"
 
-import { Titillium_Web as V0_Font_Titillium_Web, Vollkorn as V0_Font_Vollkorn } from 'next/font/google'
+import { Amatic_SC as V0_Font_Amatic_SC, Cormorant as V0_Font_Cormorant } from 'next/font/google'
 
 // Initialize fonts
-const _titilliumWeb = V0_Font_Titillium_Web({ subsets: ['latin'], weight: ["200","300","400","600","700","900"], variable: '--v0-font-titillium-web' })
-const _vollkorn = V0_Font_Vollkorn({ subsets: ['latin'], weight: ["400","500","600","700","800","900"], variable: '--v0-font-vollkorn' })
-const _v0_fontVariables = `${_titilliumWeb.variable} ${_vollkorn.variable}`
+const _amaticSc = V0_Font_Amatic_SC({ subsets: ['latin'], weight: ["400","700"], variable: '--v0-font-amatic-sc' })
+const _cormorant = V0_Font_Cormorant({ subsets: ['latin'], weight: ["300","400","500","600","700"], variable: '--v0-font-cormorant' })
+const _v0_fontVariables = `${_amaticSc.variable} ${_cormorant.variable}`
 
 export const metadata: Metadata = {
   title: "Numerología Integral - Descubre tu Destino",
@@ -30,7 +31,8 @@ export default function RootLayout({
       <body className={`font-serif antialiased ${_v0_fontVariables}`}>
         <MysticalBackground />
         <FloatingSymbols />
-        <div className="relative z-20">
+        <Navigation />
+        <div className="relative z-20 pt-16">
           <Suspense fallback={null}>{children}</Suspense>
         </div>
         <Analytics />
