@@ -7,12 +7,12 @@ import { FloatingSymbols } from "@/components/floating-symbols"
 import { Navigation } from "@/components/navigation"
 import "./globals.css"
 
-import { Amatic_SC as V0_Font_Amatic_SC, Cormorant as V0_Font_Cormorant } from 'next/font/google'
+import { PT_Sans_Narrow as V0_Font_PT_Sans_Narrow, Playfair_Display as V0_Font_Playfair_Display } from 'next/font/google'
 
 // Initialize fonts
-const _amaticSc = V0_Font_Amatic_SC({ subsets: ['latin'], weight: ["400","700"], variable: '--v0-font-amatic-sc' })
-const _cormorant = V0_Font_Cormorant({ subsets: ['latin'], weight: ["300","400","500","600","700"], variable: '--v0-font-cormorant' })
-const _v0_fontVariables = `${_amaticSc.variable} ${_cormorant.variable}`
+const _ptSansNarrow = V0_Font_PT_Sans_Narrow({ subsets: ['latin'], weight: ["400","700"], variable: '--v0-font-pt-sans-narrow' })
+const _playfairDisplay = V0_Font_Playfair_Display({ subsets: ['latin'], weight: ["400","500","600","700","800","900"], variable: '--v0-font-playfair-display' })
+const _v0_fontVariables = `${_ptSansNarrow.variable} ${_playfairDisplay.variable}`
 
 export const metadata: Metadata = {
   title: "Numerología Integral - Descubre tu Destino",
