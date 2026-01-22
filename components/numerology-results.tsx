@@ -72,9 +72,6 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
     type: string
   }) => {
     const meaning = NUMBER_MEANINGS[number as keyof typeof NUMBER_MEANINGS]
-    const tarot = TAROT_CORRESPONDENCES[number as keyof typeof TAROT_CORRESPONDENCES]
-    const kabbalah = KABBALAH_CORRESPONDENCES[number as keyof typeof KABBALAH_CORRESPONDENCES]
-    const astrology = ASTROLOGY_CORRESPONDENCES[number as keyof typeof ASTROLOGY_CORRESPONDENCES]
 
     return (
       <Card className="bg-card/80 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 relative overflow-hidden">
@@ -103,13 +100,17 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
             <p className="text-sm text-muted-foreground mb-3">{description}</p>
           </div>
 
-          {/* Separator component should be imported */}
-          {/* <Separator /> */}
-
           <div className="space-y-3">
             <div>
-              <h4 className="font-medium text-primary mb-2">Características</h4>
+              <h4 className="font-medium text-primary mb-2">Vibración y Energía</h4>
               <p className="text-sm text-muted-foreground mb-2">{meaning?.description}</p>
+              {meaning?.extendedMeaning && (
+                <p className="text-sm text-muted-foreground/80 italic mb-2">{meaning.extendedMeaning}</p>
+              )}
+            </div>
+
+            <div>
+              <h4 className="font-medium text-primary mb-2">Palabras Clave</h4>
               <div className="flex flex-wrap gap-1">
                 {meaning?.keywords.map((keyword, index) => (
                   <Badge key={index} variant="outline" className="text-xs">
@@ -119,38 +120,47 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
               </div>
             </div>
 
-            {tarot && (
+            {meaning?.spiritualMeaning && (
               <div>
-                <h4 className="font-medium text-primary mb-1">Tarot</h4>
+                <h4 className="font-medium text-primary mb-1">Significado Espiritual</h4>
                 <p className="text-sm text-muted-foreground">
-                  {tarot.card} - {tarot.arcana}
+                  {meaning.spiritualMeaning}
                 </p>
               </div>
             )}
 
-            {kabbalah && (
+            {meaning?.lifeLesson && (
               <div>
-                <h4 className="font-medium text-primary mb-1">Kabbalah</h4>
+                <h4 className="font-medium text-primary mb-1">Lección de Vida</h4>
                 <p className="text-sm text-muted-foreground">
-                  {kabbalah.sephira} ({kabbalah.meaning}) - {kabbalah.path}
+                  {meaning.lifeLesson}
                 </p>
               </div>
             )}
 
-            {astrology && (
+            <div className="grid grid-cols-2 gap-2 pt-2">
               <div>
-                <h4 className="font-medium text-primary mb-1">Astrología</h4>
-                <p className="text-sm text-muted-foreground">
-                  {astrology.planet} en {astrology.sign} - {astrology.quality}
-                </p>
+                <h4 className="font-medium text-primary mb-1 text-xs">Elemento</h4>
+                <Badge variant="secondary" className="text-xs" style={{ backgroundColor: `${meaning?.color}20` }}>
+                  {meaning?.element}
+                </Badge>
               </div>
-            )}
-
-            <div>
-              <h4 className="font-medium text-primary mb-1">Elemento</h4>
-              <Badge variant="secondary" className="text-xs" style={{ backgroundColor: `${meaning?.color}20` }}>
-                {meaning?.element}
-              </Badge>
+              {meaning?.hebrewLetter && (
+                <div>
+                  <h4 className="font-medium text-primary mb-1 text-xs">Letra Hebrea</h4>
+                  <Badge variant="secondary" className="text-xs">
+                    {meaning.hebrewLetter}
+                  </Badge>
+                </div>
+              )}
+              {meaning?.sephira && (
+                <div>
+                  <h4 className="font-medium text-primary mb-1 text-xs">Sefirot</h4>
+                  <Badge variant="secondary" className="text-xs">
+                    {meaning.sephira}
+                  </Badge>
+                </div>
+              )}
             </div>
           </div>
         </CardContent>
@@ -215,15 +225,12 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
 
         {/* Tabs Navigation - CHANGE: Responsive grid for mobile, scrollable on small screens */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-2 h-auto p-2">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 gap-2 h-auto p-2">
             <TabsTrigger value="resumen" className="text-xs sm:text-sm md:text-base py-2 sm:py-3">
               Resumen
             </TabsTrigger>
             <TabsTrigger value="analisis" className="text-xs sm:text-sm md:text-base py-2 sm:py-3">
               Análisis
-            </TabsTrigger>
-            <TabsTrigger value="sintesis" className="text-xs sm:text-sm md:text-base py-2 sm:py-3">
-              Síntesis
             </TabsTrigger>
             <TabsTrigger value="astrologia" className="text-xs sm:text-sm md:text-base py-2 sm:py-3">
               Astrología
@@ -442,70 +449,6 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="sintesis" className="space-y-4 sm:space-y-6 px-2 sm:px-4 py-4">
-            <Card className="border-primary/20 bg-gradient-to-br from-background to-accent/5">
-              <CardHeader className="border-b border-primary/20">
-                <CardTitle className="text-2xl text-primary">
-                  Síntesis Integrada: Tu Mapa Numerológico Completo
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-6 space-y-6">
-                <div className="space-y-4">
-                  <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
-                    <h3 className="font-semibold text-primary mb-2">Tu Esencia Numerológica</h3>
-                    <p className="text-sm text-foreground/80 leading-relaxed">
-                      Tu número de destino (<span className="font-bold text-primary">{results.destiny}</span>)
-                      representa tu misión de vida fundamental. Combinado con tu número del alma (
-                      <span className="font-bold text-primary">{results.soul}</span>), que expresa tus deseos internos
-                      más profundos, formas una personalidad única. Tu número de personalidad (
-                      <span className="font-bold text-primary">{results.personality}</span>) es cómo los demás te
-                      perciben, mientras que tu número de expresión (
-                      <span className="font-bold text-primary">{results.expression}</span>) revela tus talentos
-                      naturales.
-                    </p>
-                  </div>
-
-                  <div className="p-4 rounded-lg bg-accent/5 border border-accent/20">
-                    <h3 className="font-semibold text-accent mb-2">Influencias Astrológicas</h3>
-                    <p className="text-sm text-foreground/80 leading-relaxed">
-                      Tu signo zodiacal añade una capa adicional de influencia a tu carta numerológica. Según la cábala,
-                      tu signo corresponde a energías específicas del Árbol de la Vida que se entrelazan con tus números
-                      para crear un perfil espiritual único y personalizado.
-                    </p>
-                  </div>
-
-                  <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
-                    <h3 className="font-semibold text-primary mb-2">Ciclos y Lecciones de Vida</h3>
-                    <p className="text-sm text-foreground/80 leading-relaxed">
-                      Los números en tu carta trabajan en armonía para guiarte a través de ciclos de crecimiento
-                      espiritual. La integración de estos números en tu vida cotidiana puede traer mayor claridad,
-                      propósito y realización.
-                    </p>
-                  </div>
-
-                  <div className="p-4 rounded-lg bg-accent/5 border border-accent/20">
-                    <h3 className="font-semibold text-accent mb-2">Recomendaciones Personales</h3>
-                    <ul className="text-sm text-foreground/80 space-y-2">
-                      <li>
-                        • Estudia profundamente el significado de tu número de destino para alinear tus acciones con tu
-                        propósito
-                      </li>
-                      <li>
-                        • Cultiva las cualidades positivas de tu número del alma para satisfacer tus deseos más
-                        auténticos
-                      </li>
-                      <li>• Desarrolla los talentos del número de expresión para maximizar tu potencial creativo</li>
-                      <li>
-                        • Equilibra tu percepción externa (personalidad) con tu realidad interna (alma) para mayor
-                        autenticidad
-                      </li>
-                    </ul>
                   </div>
                 </div>
               </CardContent>
