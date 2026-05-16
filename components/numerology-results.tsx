@@ -120,6 +120,54 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
               </div>
             </div>
 
+            {/* Aspectos Positivos */}
+            {meaning?.positiveTraits && meaning.positiveTraits.length > 0 && (
+              <div>
+                <h4 className="font-medium text-emerald-500 mb-2 flex items-center gap-1">
+                  <span className="text-lg">+</span> Aspectos Positivos
+                </h4>
+                <div className="flex flex-wrap gap-1">
+                  {meaning.positiveTraits.map((trait, index) => (
+                    <Badge key={index} variant="outline" className="text-xs border-emerald-500/30 text-emerald-400">
+                      {trait}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Aspectos Negativos */}
+            {meaning?.negativeTraits && meaning.negativeTraits.length > 0 && (
+              <div>
+                <h4 className="font-medium text-amber-500 mb-2 flex items-center gap-1">
+                  <span className="text-lg">-</span> Aspectos a Trabajar
+                </h4>
+                <div className="flex flex-wrap gap-1">
+                  {meaning.negativeTraits.map((trait, index) => (
+                    <Badge key={index} variant="outline" className="text-xs border-amber-500/30 text-amber-400">
+                      {trait}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Aspectos Destructivos */}
+            {meaning?.destructiveTraits && meaning.destructiveTraits.length > 0 && (
+              <div>
+                <h4 className="font-medium text-red-500 mb-2 flex items-center gap-1">
+                  <span className="text-lg">!</span> Sombras a Evitar
+                </h4>
+                <div className="flex flex-wrap gap-1">
+                  {meaning.destructiveTraits.map((trait, index) => (
+                    <Badge key={index} variant="outline" className="text-xs border-red-500/30 text-red-400">
+                      {trait}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {meaning?.spiritualMeaning && (
               <div>
                 <h4 className="font-medium text-primary mb-1">Significado Espiritual</h4>
@@ -134,6 +182,15 @@ export function NumerologyResults({ results, userData, onNewReading }: Numerolog
                 <h4 className="font-medium text-primary mb-1">Lección de Vida</h4>
                 <p className="text-sm text-muted-foreground">
                   {meaning.lifeLesson}
+                </p>
+              </div>
+            )}
+
+            {meaning?.tikun && (
+              <div>
+                <h4 className="font-medium text-primary mb-1">Tikún (Corrección)</h4>
+                <p className="text-sm text-muted-foreground">
+                  {meaning.tikun}
                 </p>
               </div>
             )}
